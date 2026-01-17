@@ -1,0 +1,740 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坦克世界 | 官方游戏网站</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #4dabf7;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #74c0fc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: rgba(15, 15, 26, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid #2e2e4a;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        
+        .logo span {
+            color: #4dabf7;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: #4dabf7;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #e9ecef;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #4dabf7;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #339af0;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #4dabf7;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: #4dabf7;
+        }
+        
+        /* 游戏特色 */
+        .features {
+            padding: 100px 0;
+            background-color: #1a1a2e;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .section-title p {
+            color: #adb5bd;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #25253e;
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #4dabf7;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        
+        .feature-card p {
+            color: #adb5bd;
+        }
+        
+        /* 游戏截图 */
+        .screenshots {
+            padding: 100px 0;
+            background-color: #0f0f1a;
+        }
+        
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .screenshot {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        
+        .screenshot:hover {
+            transform: scale(1.05);
+        }
+        
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* 新闻部分 */
+        .news {
+            padding: 100px 0;
+            background-color: #1a1a2e;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background-color: #25253e;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-date {
+            color: #4dabf7;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .news-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        
+        .news-card p {
+            color: #adb5bd;
+            margin-bottom: 15px;
+        }
+        
+        /* 下载/购买部分 */
+        .purchase {
+            padding: 100px 0;
+            background-color: #0f0f1a;
+            text-align: center;
+        }
+        
+        .price-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .price-card {
+            background-color: #25253e;
+            padding: 40px 30px;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .price-card.popular {
+            border: 2px solid #4dabf7;
+            position: relative;
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: #4dabf7;
+            color: #ffffff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .price-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .price {
+            font-size: 40px;
+            font-weight: bold;
+            color: #4dabf7;
+            margin-bottom: 20px;
+        }
+        
+        .price span {
+            font-size: 16px;
+            color: #adb5bd;
+        }
+        
+        .price-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .price-features li {
+            margin-bottom: 10px;
+            color: #adb5bd;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #0a0a12;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+        }
+        
+        .footer-links a:hover {
+            color: #4dabf7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #25253e;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: #ffffff;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #4dabf7;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2e2e4a;
+            color: #adb5bd;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .price-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">坦克<span>世界</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#features">游戏特色</a></li>
+                    <li><a href="#screenshots">游戏截图</a></li>
+                    <li><a href="#news">新闻</a></li>
+                    <li><a href="#purchase">购买</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>危险重重的坦克世界</h1>
+                <p>坦克世界是一款开放世界游戏。你可以在游戏里AI对决。也可以在游戏里按右键建造你想要的建筑。从普通的火柴盒到宫殿。</p>
+                <div class="hero-buttons">
+                    <a href="#purchase" class="btn">立即购买</a>
+                    <a href="#features" class="btn btn-outline">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏特色 -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>游戏特色</h2>
+                <p>眼前所未有的感觉。探索这个世界。</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>坦克世界。</h3>
+                    <p>这里危险重重。你可以建造建筑来阻挡敌军的坦克。可以与其他玩家一起对付坦克。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-space-shuttle"></i>
+                    </div>
+                    <h3>建设</h3>
+                    <p></p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <h3>角色发展</h3>
+                    <p>通过钻石来购买不同的角色。角色有不同的功能。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>服务器系统</h3>
+                    <p>你可以创建属于自己的服务器。与其他玩家一起游玩。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>科学研究</h3>
+                    <p>发现新技术，研究外星文物，解锁强大的能力来提升你的星际旅行体验。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>游戏处于开发阶段。</h3>
+                    <p>有bug在所难免。望各位见谅。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏截图 -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <div class="section-title">
+                <h2>游戏截图</h2>
+                <p>一窥《坦克世界》的视觉盛宴</p>
+            </div>
+            <div class="screenshot-grid">
+                <div class="screenshot">
+                    <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="游戏截图1">
+                </div>
+                <div class="screenshot">
+                    <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="游戏截图2">
+                </div>
+                <div class="screenshot">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="游戏截图3">
+                </div>
+                <div class="screenshot">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="游戏截图4">
+                </div>
+                <div class="screenshot">
+                    <img src="https://images.unsplash.com/photo-1506443432602-ac2fcd6f54e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="游戏截图5">
+                </div>
+                <div class="screenshot">
+                    <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="游戏截图6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新闻部分 -->
+    <section class="news" id="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>最新新闻</h2>
+                <p>了解《坦克世界》的最新动态和更新</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="新闻图片1">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">2023年6月15日</div>
+                        <h3>《坦克世界》1.2版本更新公告</h3>
+                        <p>本次更新带来了全新的星系、改进的飞船建造系统和多项游戏性优化...</p>
+                        <a href="#">阅读更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1541873676-a18131494184?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="新闻图片2">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">2023年5月28日</div>
+                        <h3>开发者访谈：游戏背后的故事</h3>
+                        <p>我们采访了游戏首席设计师，了解《坦克世界。》的开发历程和未来计划...</p>
+                        <a href="#">阅读更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="新闻图片3">
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">2023年5月10日</div>
+                        <h3>社区创作大赛获奖名单公布</h3>
+                        <p>经过激烈角逐，我们评选出了最佳建筑设计、最佳pvp等多个奖项...</p>
+                        <a href="#">阅读更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 购买部分 -->
+    <section class="purchase" id="purchase">
+        <div class="container">
+            <div class="section-title">
+                <h2>立即购买</h2>
+                <p>选择适合你的版本，开始星际冒险</p>
+            </div>
+            <div class="price-cards">
+                <div class="price-card">
+                    <h3>标准版</h3>
+                    <div class="price">¥129<span>/永久</span></div>
+                    <ul class="price-features">
+                        <li>完整基础游戏</li>
+                        <li>未来所有免费更新</li>
+                        <li>5个独特坦克皮肤</li>
+                        <li>数字版原声带</li>
+                    </ul>
+                    <a href="#" class="btn">购买</a>
+                </div>
+                <div class="price-card popular">
+                    <div class="popular-tag">最受欢迎</div>
+                    <h3>豪华版</h3>
+                    <div class="price">¥199<span>/永久</span></div>
+                    <ul class="price-features">
+                        <li>完整基础游戏</li>
+                        <li>未来所有免费更新</li>
+                        <li>15个独特坦克皮肤</li>
+                        <li>数字版原声带+艺术集</li>
+                        <li>独家装饰物品</li>
+                        <li>提前72小时体验新内容</li>
+                    </ul>
+                    <a href="#" class="btn">购买</a>
+                </div>
+                <div class="price-card">
+                    <h3>收藏版</h3>
+                    <div class="price">¥299<span>/永久</span></div>
+                    <ul class="price-features">
+                        <li>完整基础游戏</li>
+                        <li>未来所有免费更新</li>
+                        <li>所有坦克皮肤(30+)</li>
+                        <li>数字豪华内容</li>
+                        <li>实体收藏品(限量)</li>
+                        <li>开发者签名艺术卡</li>
+                        <li>名字列入游戏鸣谢</li>
+                    </ul>
+                    <a href="#" class="btn">购买</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>星云游戏工作室致力于创造沉浸式的游戏体验，带给玩家最真实的星际冒险感受。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#features">游戏特色</a></li>
+                        <li><a href="#screenshots">游戏截图</a></li>
+                        <li><a href="#news">新闻</a></li>
+                        <li><a href="#purchase">购买</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>支持</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">技术支持</a></li>
+                        <li><a href="#">退款政策</a></li>
+                        <li><a href="#">社区准则</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contact@starexplorer.com</li>
+                        <li><i class="fas fa-phone"></i> +86 400-123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 北京市朝阳区科技园A座1001</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 星云游戏工作室. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(15, 15, 26, 0.95)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.backgroundColor = 'rgba(15, 15, 26, 0.9)';
+                header.style.padding = '15px 0';
+            }
+        });
+    </script>
+</body>
+</html>
